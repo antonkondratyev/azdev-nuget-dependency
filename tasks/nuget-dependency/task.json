@@ -1,0 +1,66 @@
+{
+  "id": "d64a262b-6e58-43ab-bcab-0f45bb9e82fa",
+  "name": "NuGetDependency",
+  "friendlyName": "NuGet Dependency",
+  "description": "Patching dependency version in NuGet package",
+  "instanceNameFormat": "Patch NuGet Dependency",
+  "helpMarkDown": "",
+  "author": "Anton Kondratyev",
+  "icons": {
+    "default": "icon.png"
+  },
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [],
+  "groups": [],
+  "inputs": [
+    {
+      "name": "nuSpecFilesPath",
+      "type": "filePath",
+      "label": "NuSpec Files Path",
+      "required": true,
+      "defaultValue": "$(Build.SourcesDirectory)\\*.nuspec",
+      "helpMarkDown": "The path to the nuspec files.\n\nUse [variables](http://go.microsoft.com/fwlink/?LinkId=550988) if files are not in the repo.\nExample: $(build.sourcesdirectory)"
+    },
+    {
+      "name": "customVersion",
+      "type": "boolean",
+      "label": "Custom Version",
+      "required": false,
+      "defaultValue": "false",
+      "helpMarkDown": "If you want to set specific settings in dependency version."
+    },
+    {
+      "name": "dependencyID",
+      "type": "string",
+      "label": "Dependency Name",
+      "required": true,
+      "defaultValue": "",
+      "visibleRule": "customVersion = true",
+      "helpMarkDown": ""
+    },
+    {
+      "name": "dependencyVersion",
+      "type": "string",
+      "label": "Dependency Version",
+      "required": true,
+      "defaultValue": "$(Build.BuildNumber)",
+      "visibleRule": "customVersion = true",
+      "helpMarkDown": "NuGet supports using interval notation for specifying version ranges.\nLearn more about [Versioning](http://docs.nuget.org/create/Versioning)."
+    }
+  ],
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\index.ps1",
+      "argumentFormat": ""
+    }
+  }
+}

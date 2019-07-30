@@ -1,0 +1,42 @@
+{
+  "manifestVersion": 1,
+  "id": "nuget-dependency",
+  "name": "NuGet Dependency",
+  "version": "1.0.0",
+  "publisher": "kondratyevanton",
+  "public": true,
+  "description": "",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "categories": [
+    "Build and release"
+  ],
+  "icons": {
+    "default": "images/logo.png"
+  },
+  "scopes": [
+    "vso.build",
+    "vso.release"
+  ],
+  "contributions": [
+    {
+      "id": "nuget-dependency",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "tasks/nuget-dependency"
+      }
+    }
+  ],
+  "contributionTypes": [],
+  "files": [
+    {
+      "path": "tasks/nuget-dependency/"
+    }
+  ]
+}
